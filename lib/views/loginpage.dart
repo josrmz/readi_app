@@ -29,27 +29,15 @@ class _LoginPageState extends State<LoginPage> {
   void _handleLogin() async {
   if (!_formKey.currentState!.validate()) return;
 
-  setState(() => _isLoading = true);
-
-  try {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
-
-    if (!mounted) return;
-
-    Utils.showSnackBar(context: context, title: 'Bienvenido');
-
-    context.go('/homepage');
-  } on FirebaseAuthException catch (e) {
-    Utils.showSnackBar(context: context, title: e.message ?? 'Error');
-  } finally {
-    if (mounted) {
-      setState(() => _isLoading = false);
+      Future.delayed(const Duration(seconds: 2), () {
+        setState(() => _isLoading = false);
+        if (context.mounted) {
+          context.push('/homepage');
+        }
+      });
     }
   }
-}
+
 
   Future<UserCredential?> _handleGoogleSignIn() async {
     final GoogleSignIn signIn = GoogleSignIn.instance;
@@ -83,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 24),
                 
                 const Text(
-                  'Bienvenido',
+                  'Bienvenido de nuevo',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -161,7 +149,8 @@ class _LoginPageState extends State<LoginPage> {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: _isLoading ? null : _handleLogin,
+                    onPressed: ()async {
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF875AA),
                       disabledBackgroundColor: const Color(0xFFD1D5DB),
@@ -228,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                       final user = await _handleGoogleSignIn();
 
                       if (user != null && context.mounted) {
-                        context.push('/homepage');
+                        Navigator.pushNamed(context, '/home');
                       }
                     },
                     style: OutlinedButton.styleFrom(
@@ -264,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      context.push('/signup');
+                      Navigator.pushNamed(context, '/signup');
                     },
                     child: Text('Registrate'),
                   ),
@@ -276,4 +265,3 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
