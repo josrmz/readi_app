@@ -132,7 +132,20 @@ class LoginPage extends StatelessWidget {
             color: Colors.black87
           ),
         ),
-        
+        SizedBox(
+          height: 5,
+        ),
+        TextField(
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey//[400]
+              ),
+            )
+          ),
+        )
       ],
     );
   }
