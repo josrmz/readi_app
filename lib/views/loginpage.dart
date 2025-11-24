@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:readi_app/shared/utils.dart';
+//import 'package:readi_app/shared/utils.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/textfield_widget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -26,8 +26,9 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _handleLogin() async {
-  if (!_formKey.currentState!.validate()) return;
+  void _handleLogin() {
+    if (_formKey.currentState!.validate()) {
+      setState(() => _isLoading = true);
 
       Future.delayed(const Duration(seconds: 2), () {
         setState(() => _isLoading = false);
@@ -37,7 +38,6 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
-
 
   Future<UserCredential?> _handleGoogleSignIn() async {
     final GoogleSignIn signIn = GoogleSignIn.instance;
@@ -52,8 +52,6 @@ class _LoginPageState extends State<LoginPage> {
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -245,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                  ), 
+                  ),
                 ),
                 const SizedBox(height: 24),
 
@@ -253,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      context.push('/signup');
+                      Navigator.pushNamed(context, '/signup');
                     },
                     child: Text('Registrate'),
                   ),
@@ -265,3 +263,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
