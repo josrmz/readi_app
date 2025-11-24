@@ -128,7 +128,7 @@ class SeguimientoPage extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text("Editar libro"),
+                child: Text("Editar libro",style: TextStyle(fontSize: 18, color: Colors.black,),
               ),
             ),
 
