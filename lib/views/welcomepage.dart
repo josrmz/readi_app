@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:readi_app/views/loginpage.dart';
+import 'package:readi_app/views/signup.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -56,11 +58,43 @@ class WelcomePage extends StatelessWidget {
                     height: 60,
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-
-
                     },
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
 
+                  ),
+                  SizedBox(height: 20),
+                  MaterialButton(
+                    minWidth: double.infinity,
+                    height: 60,
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                    },
+                    color: Color(0xF875AA),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text(
+                      "SignUp",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18
+                      ),
+                    ),
                   )
+
                 ],
               )
 
