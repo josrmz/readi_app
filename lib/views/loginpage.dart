@@ -52,7 +52,7 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       inputFile(label:"Email"),
-                      inputFile(label: "Password", obscureText: true)
+                      inputFile(label: "Contraseña", obscureText: true)
 
                     ],
                   ),
