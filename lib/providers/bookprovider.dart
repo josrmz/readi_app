@@ -82,9 +82,30 @@ class BookProvider {
     await db.collection('users').doc(uid).collection('books').doc(docId).update(data);
   }
 
+  Stream<List<Map<String, dynamic>>> getBooksStreamWithIds() {
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+
+  return db
+      .collection('users')
+      .doc(uid)
+      .collection('books')
+      .snapshots()
+      .map((snapshot) {
+    return snapshot.docs.map((doc) {
+      return {
+        "id": doc.id,
+        "book": Book.fromMap(doc.data()),
+      };
+    }).toList();
+  });
+}
+
+
   Future<void> deleteBook(String docId) async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
 
     await db.collection('users').doc(uid).collection('books').doc(docId).delete();
   }
 }
+
+

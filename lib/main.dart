@@ -14,6 +14,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseAuth.instance.signInAnonymously();
+  
   runApp(const MyApp());
 }
 
