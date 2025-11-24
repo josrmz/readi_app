@@ -25,7 +25,7 @@ class WelcomePage extends StatelessWidget {
                    "Bienvenido",
                    style: TextStyle(
                    fontWeight: FontWeight.bold,
-                   fontSize : 30,
+                   fontSize : 50,
                 ),
                 ),
                 SizedBox(
@@ -35,7 +35,7 @@ class WelcomePage extends StatelessWidget {
                 textAlign : TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey[700],
-                  fontSize: 15,
+                  fontSize: 20,
 
                 ),
                  )
