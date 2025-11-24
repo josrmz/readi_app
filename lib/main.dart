@@ -1,9 +1,14 @@
+import 'dart:math';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:readi_app/firebase_options.dart';
 import 'package:readi_app/views/homepage.dart';
 import 'package:readi_app/views/welcomepage.dart';
-import 'constants.dart';
+import 'package:readi_app/views/loginpage.dart';
+import 'package:readi_app/views/signup.dart';
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -18,11 +23,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp( 
-      title: 'Readi App',
-      theme : ThemeData(
-      primaryColor : kPrimaryColor,
-       scaffoldBackgroundColor : Colors.white,),
-      home : WelcomePage(),//HomePage(),
+      
+      initialRoute: '/welcome',
+      
+      routes: {
+        '/welcome': (context) => const WelcomePage(),
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignUpPage(),
+        '/home': (context) => const HomePage()
+      },//HomePage(),
     ); 
     
   }

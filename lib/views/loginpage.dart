@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:readi_app/shared/utils.dart';
+//import 'package:readi_app/shared/utils.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/textfield_widget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       Future.delayed(const Duration(seconds: 2), () {
         setState(() => _isLoading = false);
         if (context.mounted) {
-          Utils.showSnackBar(context: context, title: 'Bienvenido');
+          context.push('/homepage');
         }
       });
     }
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 24),
                 
                 const Text(
-                  'Bienvenido',
+                  'Bienvenido de nuevo',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -147,7 +147,8 @@ class _LoginPageState extends State<LoginPage> {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: _isLoading ? null : _handleLogin,
+                    onPressed: ()async {
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF875AA),
                       disabledBackgroundColor: const Color(0xFFD1D5DB),
@@ -214,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                       final user = await _handleGoogleSignIn();
 
                       if (user != null && context.mounted) {
-                        context.push('/homepage');
+                        Navigator.pushNamed(context, '/home');
                       }
                     },
                     style: OutlinedButton.styleFrom(
@@ -250,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      context.push('/signup');
+                      Navigator.pushNamed(context, '/signup');
                     },
                     child: Text('Registrate'),
                   ),
