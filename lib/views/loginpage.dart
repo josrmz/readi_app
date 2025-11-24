@@ -49,8 +49,18 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Container(
-                    padding: EdgeInsets.only(top: 30, left: 3),
+                  child: Column(
+                    children: <Widget>[
+                      inputFile(label:"Email"),
+                      inputFile(label: "Password", obscureText: true)
+
+                    ],
+                  ),
+                ),
+                Padding(padding: 
+                EdgeInsets.symmetric(horizontal: 40),
+                child: Container(
+                    padding: EdgeInsets.only(top: 3, left: 3),
                     decoration: 
                      BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
@@ -80,8 +90,8 @@ class LoginPage extends StatelessWidget {
                       ),
                      ),
 
-                  ),
-                   ),
+                 ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -143,9 +153,13 @@ class LoginPage extends StatelessWidget {
               borderSide: BorderSide(
                 color: Colors.grey//[400]
               ),
+            ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey)
             )
           ),
-        )
+        ),
+        SizedBox(height: 10,)
       ],
     );
   }
