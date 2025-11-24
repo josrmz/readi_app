@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Text("¿Estas READI para tu reto de lectura?",
+                Text("¿Estas READi para tu reto de lectura?",
                 textAlign : TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey[700],
