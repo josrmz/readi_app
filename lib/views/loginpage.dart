@@ -256,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text('Ingresar sin iniciar sesion',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey,
+                      color: Colors.black,
                       fontWeight: FontWeight.w600,
                     ),),
                   ),
