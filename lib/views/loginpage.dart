@@ -251,9 +251,14 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
+                      Navigator.pushNamed(context, '/home');
                     },
-                    child: Text('Registrate'),
+                    child: Text('Ingresar sin iniciar sesion',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w600,
+                    ),),
                   ),
                 ),
               ],
