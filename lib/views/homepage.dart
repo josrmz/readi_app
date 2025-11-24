@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true, // <-- centramos el título
+        centerTitle: true, 
         title: const Text('READi - Tus Libros'),
       ),
       drawer: Drawer(
