@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readi_app/models/ModeloLibro.dart';
 import 'package:readi_app/providers/bookprovider.dart';
+import 'package:readi_app/views/seguimientopage.dart';
 
 class InfoLibro extends StatelessWidget {
   const InfoLibro({super.key});
@@ -9,8 +10,8 @@ class InfoLibro extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = BookProvider();
 
-    return StreamBuilder<List<Book>>(
-      stream: provider.getBooksStream(),
+    return StreamBuilder<List<Map<String, dynamic>>>(
+      stream: provider.getBooksStreamWithIds(),
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -29,31 +30,49 @@ class InfoLibro extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           itemCount: books.length,
           itemBuilder: (context, index) {
-            final b = books[index];
 
-            return Container(
-              margin: const EdgeInsets.only(bottom: 12),
-              child: Row(
-                children: [
-                  Container(
-                    width: 70,
-                    height: 100,
-                    color: Colors.grey.shade300,
-                  ),
-                  const SizedBox(width: 12),
+            final data = books[index];
+            final Book b = data["book"];
+            final String id = data["id"];
 
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(b.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                        Text("Autor: ${b.author}"),
-                        Text("Estado: ${b.status}"),
-                        Text("Páginas: ${b.pagesRead}/${b.pagesTotal}"),
-                      ],
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SeguimientoPage(
+                      book: b,
+                      bookId: id,
                     ),
                   ),
-                ],
+                );
+              },
+
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 70,
+                      height: 100,
+                      color: Colors.grey.shade300,
+                    ),
+
+                    const SizedBox(width: 12),
+
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(b.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Autor: ${b.author}"),
+                          Text("Estado: ${b.status}"),
+                          Text("Páginas: ${b.pagesRead}/${b.pagesTotal}"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -62,3 +81,4 @@ class InfoLibro extends StatelessWidget {
     );
   }
 }
+

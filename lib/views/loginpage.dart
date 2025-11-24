@@ -26,18 +26,30 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _handleLogin() {
-    if (_formKey.currentState!.validate()) {
-      setState(() => _isLoading = true);
+  void _handleLogin() async {
+  if (!_formKey.currentState!.validate()) return;
 
-      Future.delayed(const Duration(seconds: 2), () {
-        setState(() => _isLoading = false);
-        if (context.mounted) {
-          Utils.showSnackBar(context: context, title: 'Bienvenido');
-        }
-      });
+  setState(() => _isLoading = true);
+
+  try {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+
+    if (!mounted) return;
+
+    Utils.showSnackBar(context: context, title: 'Bienvenido');
+
+    context.go('/homepage');
+  } on FirebaseAuthException catch (e) {
+    Utils.showSnackBar(context: context, title: e.message ?? 'Error');
+  } finally {
+    if (mounted) {
+      setState(() => _isLoading = false);
     }
   }
+}
 
   Future<UserCredential?> _handleGoogleSignIn() async {
     final GoogleSignIn signIn = GoogleSignIn.instance;
@@ -52,6 +64,8 @@ class _LoginPageState extends State<LoginPage> {
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -242,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                  ),
+                  ), 
                 ),
                 const SizedBox(height: 24),
 
