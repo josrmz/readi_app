@@ -22,9 +22,14 @@ class SeguimientoPage extends StatelessWidget {
         : (book.pagesRead / book.pagesTotal);
 
     return Scaffold(
+      backgroundColor: const Color(0xFFFFF1F8),
+
       appBar: AppBar(
         title: const Text("Seguimiento"),
         centerTitle: true,
+        elevation: 0,
+        backgroundColor: const Color(0xFFF875AA),
+        foregroundColor: Colors.white,
       ),
 
       body: Padding(
@@ -33,54 +38,85 @@ class SeguimientoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            /// Imagen portada
             Container(
               width: 180,
               height: 240,
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(12),
+                color: const Color(0xFFFFC4DD),
+                borderRadius: BorderRadius.circular(14),
               ),
+              child: const Icon(Icons.menu_book_rounded, size: 90, color: Colors.white),
             ),
             const SizedBox(height: 18),
 
             Text(
               book.title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF5D2E46),
+              ),
               textAlign: TextAlign.center,
             ),
 
             Text(
               book.author,
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(
+                fontSize: 17,
+                color: Color(0xFF7A7A7A),
+              ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 25),
 
-            Text(
-              "Estado: ${book.status}",
-              style: const TextStyle(fontSize: 16),
-            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFE3EE),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
 
-            const SizedBox(height: 12),
+                  Text(
+                    "Estado: ${book.status}",
+                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
 
-            Text(
-              "Páginas leídas: ${book.pagesRead}/${book.pagesTotal}",
-              style: const TextStyle(fontSize: 15),
-            ),
+                  const SizedBox(height: 10),
 
-            const SizedBox(height: 15),
+                  Text(
+                    "Páginas: ${book.pagesRead}/${book.pagesTotal}",
+                    style: const TextStyle(fontSize: 16),
+                  ),
 
-            LinearProgressIndicator(
-              value: progress,
-              minHeight: 12,
+                  const SizedBox(height: 16),
+
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 12,
+                      backgroundColor: Colors.white,
+                      valueColor: const AlwaysStoppedAnimation(Color(0xFFF875AA)),
+                    ),
+                  ),
+                ],
+              ),
             ),
 
             const Spacer(),
 
             SizedBox(
               width: double.infinity,
+              height: 48,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFF875AA),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -96,13 +132,17 @@ class SeguimientoPage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
 
             SizedBox(
               width: double.infinity,
+              height: 48,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: const Color(0xFFE04664),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )
                 ),
                 onPressed: () async {
                   await BookProvider().deleteBook(bookId);
@@ -110,10 +150,13 @@ class SeguimientoPage extends StatelessWidget {
                 },
                 child: const Text("Eliminar libro"),
               ),
-            )
+            ),
+
+
           ],
         ),
       ),
     );
   }
 }
+

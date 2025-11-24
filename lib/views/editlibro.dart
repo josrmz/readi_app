@@ -28,7 +28,6 @@ class _EditLibroState extends State<EditLibro> {
   void initState() {
     super.initState();
 
-    // Si viene desde seguimiento cargar data
     if (widget.book != null) {
       titleCtrl.text = widget.book!.title;
       authorCtrl.text = widget.book!.author;
@@ -51,48 +50,43 @@ class _EditLibroState extends State<EditLibro> {
     final isEditing = widget.bookId != null;
 
     return Scaffold(
+      backgroundColor: const Color(0xFFFFF1F8),
+
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
+        backgroundColor: const Color(0xFFF875AA),
+        foregroundColor: Colors.white,
         title: Text(isEditing ? "Editar Libro" : "Agregar Libro"),
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              controller: titleCtrl,
-              decoration: const InputDecoration(label: Text('Título')),
-            ),
 
             const SizedBox(height: 12),
-            TextField(
-              controller: authorCtrl,
-              decoration: const InputDecoration(label: Text('Autor')),
-            ),
 
-            const SizedBox(height: 12),
-            TextField(
-              controller: totalCtrl,
-              decoration: const InputDecoration(label: Text('Páginas totales')),
-              keyboardType: TextInputType.number,
-            ),
+            _field("Título", titleCtrl),
+            _field("Autor", authorCtrl),
+            _field("Páginas totales", totalCtrl, number: true),
+            _field("Páginas leídas", readCtrl, number: true),
 
-            const SizedBox(height: 12),
-            TextField(
-              controller: readCtrl,
-              decoration: const InputDecoration(label: Text('Páginas leídas')),
-              keyboardType: TextInputType.number,
-            ),
-
-            const SizedBox(height: 28),
+            const SizedBox(height: 35),
 
             SizedBox(
               width: double.infinity,
+              height: 48,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFF875AA),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+
                 onPressed: () async {
-                  
                   final book = Book(
                     title: titleCtrl.text,
                     author: authorCtrl.text,
@@ -114,7 +108,14 @@ class _EditLibroState extends State<EditLibro> {
                   if (mounted) Navigator.pop(context);
                 },
 
-                child: Text(isEditing ? "Guardar cambios" : "Agregar libro"),
+                child: Text(
+                  isEditing ? "Guardar cambios" : "Agregar libro",
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
           ],
@@ -122,5 +123,43 @@ class _EditLibroState extends State<EditLibro> {
       ),
     );
   }
+
+
+  Widget _field(String label, TextEditingController c, {bool number = false}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 18),
+      child: TextField(
+        controller: c,
+        keyboardType: number ? TextInputType.number : null,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF7A7A7A),
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 14,
+            vertical: 14,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Color(0xFFFFC4DD),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Color(0xFFF875AA),
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
+
 
