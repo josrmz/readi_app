@@ -12,12 +12,8 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFFFFF1F8), // fondo suave rosa pastel
 
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: const Color(0xFFF875AA),
-        foregroundColor: Colors.white,
-        title: const Text(
-          'READi - Tus Libros',
-        ),
+        centerTitle: true, 
+        title: const Text('READi - Tus Libros'),
       ),
 
       drawer: Drawer(
