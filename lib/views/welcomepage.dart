@@ -66,7 +66,7 @@ class WelcomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50)
                     ),
                     child: Text(
-                      "Login",
+                      "Iniciar Sesion",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -81,12 +81,12 @@ class WelcomePage extends StatelessWidget {
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                     },
-                    color: Color(0x00f875aa),
+                    color: Color(0xFFF875AA),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)
                     ),
                     child: Text(
-                      "SignUp",
+                      "Registrarse",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
