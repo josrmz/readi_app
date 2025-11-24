@@ -117,3 +117,22 @@ class LoginPage extends StatelessWidget {
 
   }
   }
+
+  //crear un widget para el textfield
+  Widget inputFile({label, obscureText = false})
+  {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            color: Colors.black87
+          ),
+        ),
+        
+      ],
+    );
+  }
