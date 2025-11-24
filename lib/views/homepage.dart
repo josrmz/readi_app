@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readi_app/views/editlibro.dart';
 import 'package:readi_app/widgets/infolibro.dart';
+import 'package:readi_app/views/welcomepage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,32 +10,57 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mis Libros'),
+        centerTitle: true, // <-- centramos el título
+        title: const Text('READi - Tus Libros'),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
-            DrawerHeader(
+          children: [
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Color.fromARGB(148, 163, 55, 115),
               ),
               child: Text('Menu'),
             ),
+
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text("Cerrar sesión"),
+
+              onTap: () {
+                // ----------------------------
+                // Aquí irá la lógica para cerrar sesión en Firebase
+                // Ej: FirebaseAuth.instance.signOut();
+                // ----------------------------
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WelcomePage(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
       body: const InfoLibro(),
+
       floatingActionButton: Transform.scale(
         scale: 1.5,
         child: FloatingActionButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const EditLibro())
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EditLibro(),
+              ),
             );
             // Aqui debera ir la logica para subir a la base de firebase
           },
           child: const Icon(Icons.add, size: 36),
-        ), 
+        ),
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

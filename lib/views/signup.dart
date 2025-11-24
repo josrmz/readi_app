@@ -74,7 +74,7 @@ class SignUpPage extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: (){ },
-                    color: Color(0xF875AA),
+                    color: Color(0x00f875aa),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(50),
