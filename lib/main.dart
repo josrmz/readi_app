@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:readi_app/firebase_options.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme : ThemeData(
       primaryColor : kPrimaryColor,
        scaffoldBackgroundColor : Colors.white,),
-      home : WelcomePage(),//HomePage(),
+      home : HomePage(),//WelcomePage(),
     ); 
     
   }
