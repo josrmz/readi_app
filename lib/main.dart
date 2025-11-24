@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:readi_app/views/homepage.dart';
+import 'package:readi_app/views/welcomepage.dart';
 import 'constants.dart';
 void main() {
   runApp(const MyApp());
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme : ThemeData(
       primaryColor : kPrimaryColor,
        scaffoldBackgroundColor : Colors.white,),
-      //home : WelcomePage(),
+      home : HomePage(),//WelcomePage(),
     ); 
 
   }
