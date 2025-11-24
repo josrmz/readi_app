@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "406713696522",
+    "project_id": "readi-app-637d2",
+    "storage_bucket": "readi-app-637d2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406713696522:android:e38416159b4074ce187af3",
+        "android_client_info": {
+          "package_name": "com.example.readi_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnt2H-zLg18gB3R7rS1UKqB5mUMao3pQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
