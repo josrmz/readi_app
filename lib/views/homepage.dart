@@ -9,31 +9,36 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFFF1F8), // fondo suave rosa pastel
+
       appBar: AppBar(
         centerTitle: true, 
         title: const Text('READi - Tus Libros'),
       ),
+
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(148, 163, 55, 115),
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFF875AA),
+                    Color(0xFFC084FC),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
-              child: Text('Menu'),
+              child: Text('Menú', style: TextStyle(color: Colors.white)),
             ),
 
             ListTile(
-              leading: const Icon(Icons.logout),
+              leading: const Icon(Icons.logout, color: Color(0xFFF875AA)),
               title: const Text("Cerrar sesión"),
 
               onTap: () {
-                // ----------------------------
-                // Aquí irá la lógica para cerrar sesión en Firebase
-                // Ej: FirebaseAuth.instance.signOut();
-                // ----------------------------
-
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -45,21 +50,22 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+
       body: const InfoLibro(),
 
       floatingActionButton: Transform.scale(
-        scale: 1.5,
+        scale: 1.4,
         child: FloatingActionButton(
+          backgroundColor: const Color(0xFFF875AA),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const EditLibro(),
+                builder: (_) => const EditLibro(),
               ),
             );
-            // Aqui debera ir la logica para subir a la base de firebase
           },
-          child: const Icon(Icons.add, size: 36),
+          child: const Icon(Icons.add, size: 36, color: Colors.white),
         ),
       ),
 
@@ -67,3 +73,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
